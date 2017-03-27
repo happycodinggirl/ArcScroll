@@ -1,10 +1,18 @@
 # ArcScroll
 仿360应用助手5.1.66版本游戏详情页滚动效果
+# 仿360应用助手5.1.66版本游戏详情页滚动效果
+
+标签（空格分隔）： ui custom layoutmanager
+
+---
 [效果视频][1]
 工作中需要实现类似360手机助手的游戏详情页上滚动效果,花了1天的时间研究了下,实现出来了.记录下.
 拿到效果后用uiautomatorviewer工具窥探了下360的实现方式,发现它是用RecycleView实现的,那么要实现这种效果估计就是通过自定义LayoutManager来实现的了.
 视频中每一张图片缩小为一个点,然后可以看成是点沿着一个圆弧运动.自定义LayoutManager将不同的item根据index放到位于圆弧的相应位置.思考到之前用到的PathMeasure类的使用跟自定义LayoutManager接合起来使用刚好能达到这种效果.
-实现这种效果用到的主要知识点1.自定义LayoutManager 2.Path,PathMeasure系列Api的运用,
+
+实现这种效果用到的主要知识点
+
+**1.自定义LayoutManager 2.Path,PathMeasure系列Api的运用** 
 
      RectF rectF=new RectF(0,dp2px(220),screenWidth,dp2px(290));//第2个和第
      path.addArc(rectF,0,-180); //添加一个逆时针180度的弧度，从3点钟方向为起点
@@ -14,7 +22,7 @@
 
  PathMeasure的getPosTan方法,通过传入在path的length范围内的值,然后计算出相应位置和角度值分别放到了pos数组和tan数组里面.
  
- 关键代码:自定义LayoutManager重新防置子item的代码
+ **关键代码:自定义LayoutManager重新防置子item的代码**
  
 
      
@@ -36,8 +44,8 @@
             }
         }
 
- 完整代码:[demo][2]
- 在这里有个无耻请求,-_-,如果你觉得对你有点帮助,欢迎star
+ 完整代码:[例子][2]
+ **在这里有个无耻请求,-_-,如果你觉得对你有点帮助,欢迎star**
  
   感谢[稀土掘金][3]的这篇文章对自定义LayoutManager的讲解,自己从里面学到了不少.
 
